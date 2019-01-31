@@ -1,4 +1,24 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
+
+const E4sound = new Howl({
+  src: ['/LeadWavs/LeadE4.wav', '/LeadWavs/LeadE4.wav']
+});
+const E5sound = new Howl({
+  src: ['/LeadWavs/LeadE5.wav', '/LeadWavs/LeadE5.wav']
+});
+const E6sound = new Howl({
+  src: ['/LeadWavs/LeadE6.wav', '/LeadWavs/LeadE6.wav']
+});
+const Eb4sound = new Howl({
+  src: ['/LeadWavs/LeadEb4.wav', '/LeadWavs/LeadEb4.wav']
+});
+const Eb5sound = new Howl({
+  src: ['/LeadWavs/LeadEb5.wav', '/LeadWavs/LeadEb5.wav']
+});
+const Eb6sound = new Howl({
+  src: ['/LeadWavs/LeadEb6.wav', '/LeadWavs/LeadEb6.wav']
+});
 
 class ENotes extends Component {
   state = {
@@ -52,14 +72,50 @@ class ENotes extends Component {
   componentWillUnmount() {
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
+  playE4Note = (note) => {
+    E4sound.play();
     console.log('in ENotes', note);
-
+    this.setState({
+      [note]: '#D8D800'
+    })
+  }
+  playE5Note = (note) => {
+    E5sound.play();
+    console.log('in ENotes', note);
+    this.setState({
+      [note]: '#D8D800'
+    })
+  }
+  playE6Note = (note) => {
+    E6sound.play();
+    console.log('in ENotes', note);
+    this.setState({
+      [note]: '#D8D800'
+    })
+  }
+  playEb4Note = (note) => {
+    Eb4sound.play();
+    console.log('in ENotes', note);
+    this.setState({
+      [note]: '#D8D800'
+    })
+  }
+  playEb5Note = (note) => {
+    Eb5sound.play();
+    console.log('in ENotes', note);
+    this.setState({
+      [note]: '#D8D800'
+    })
+  }
+  playEb6Note = (note) => {
+    Eb6sound.play();
+    console.log('in ENotes', note);
     this.setState({
       [note]: '#D8D800'
     })
   }
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* E NOTES */}
@@ -70,8 +126,9 @@ class ENotes extends Component {
             cx="1230.407"
             cy="498.066"
             rx="144.284"
-            ry="111.421" 
-            onClick={() => this.playNote('e4')}
+            ry="111.421"
+            onTouchStart={isTouch ? () => this.playE4Note('e4') : null}
+            onClick={isTouch ? null : () => this.playE4Note('e4')}
           />
         </g>
         <g id="e4F">
@@ -82,7 +139,8 @@ class ENotes extends Component {
             cy="635.569"
             rx="119.153"
             ry="152.941"
-            onClick={() => this.playNote('e4F')}
+            onTouchStart={isTouch ? () => this.playEb4Note('e4F') : null}
+            onClick={isTouch ? null : () => this.playEb4Note('e4F')}
           />
         </g>
         <g id="e5">
@@ -93,7 +151,8 @@ class ENotes extends Component {
             cy="506.735"
             rx="92.613"
             ry="66.307"
-            onClick={() => this.playNote('e5')}
+            onTouchStart={isTouch ? () => this.playE5Note('e5') : null}
+            onClick={isTouch ? null : () => this.playE5Note('e5')}
           />
         </g>
         <g id="e5F">
@@ -104,7 +163,8 @@ class ENotes extends Component {
             cy="783.632"
             rx="95.385"
             ry="68.307"
-            onClick={() => this.playNote('e5F')}
+            onTouchStart={isTouch ? () => this.playEb5Note('e5F') : null}
+            onClick={isTouch ? null : () => this.playEb5Note('e5F')}
           />
         </g>
         <g id="e6">
@@ -114,7 +174,8 @@ class ENotes extends Component {
             cy="598.5"
             rx="52.5"
             ry="51"
-            onClick={() => this.playNote('e6')}
+            onTouchStart={isTouch ? () => this.playE6Note('e6') : null}
+            onClick={isTouch ? null : () => this.playE6Note('e6')}
           />
         </g>
         <g id="e6F">
@@ -123,7 +184,8 @@ class ENotes extends Component {
             cx="654"
             cy="806"
             r="52.5"
-            onClick={() => this.playNote('e6F')}
+            onTouchStart={isTouch ? () => this.playEb6Note('e6F') : null}
+            onClick={isTouch ? null : () => this.playEb6Note('e6F')}
           />
         </g>
       </>

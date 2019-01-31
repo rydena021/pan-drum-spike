@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
 
-class ANotes extends Component {
+const D4sound = new Howl({
+  src: ['/LeadWavs/LeadD4.wav', '/LeadWavs/LeadD4.wav']
+});
+const D5sound = new Howl({
+  src: ['/LeadWavs/LeadD5.wav', '/LeadWavs/LeadD5.wav']
+});
+const D6sound = new Howl({
+  src: ['/LeadWavs/LeadD6.wav', '/LeadWavs/LeadD6.wav']
+});
+
+
+class DNotes extends Component {
   state = {
     d4: 'orange',
     d5: 'orange',
@@ -31,14 +43,29 @@ class ANotes extends Component {
   componentWillUnmount() {
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
+  playD4Note = (note) => {
+    D4sound.play();
     console.log('in DNotes', note);
-
+    this.setState({
+      [note]: '#EA7A00'
+    })
+  }
+  playD5Note = (note) => {
+    D5sound.play();
+    console.log('in DNotes', note);
+    this.setState({
+      [note]: '#EA7A00'
+    })
+  }
+  playD6Note = (note) => {
+    D6sound.play();
+    console.log('in DNotes', note);
     this.setState({
       [note]: '#EA7A00'
     })
   }
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* D NOTES */}
@@ -50,7 +77,8 @@ class ANotes extends Component {
             cy="1029.355"
             rx="120.239"
             ry="151.596"
-            onClick={() => this.playNote('d4')}
+            onTouchStart={isTouch ? () => this.playD4Note('d4') : null}
+            onClick={isTouch ? null : () => this.playD4Note('d4')}
           />
         </g>
         <g id="d5">
@@ -61,7 +89,8 @@ class ANotes extends Component {
             cy="798.262"
             rx="71.247"
             ry="100.371"
-            onClick={() => this.playNote('d5')}
+            onTouchStart={isTouch ? () => this.playD5Note('d5') : null}
+            onClick={isTouch ? null : () => this.playD5Note('d5')}
           />
         </g>
         <g id="d6">
@@ -70,7 +99,8 @@ class ANotes extends Component {
             cx="834"
             cy="662"
             r="54.5"
-            onClick={() => this.playNote('d6')}
+            onTouchStart={isTouch ? () => this.playD6Note('d6') : null}
+            onClick={isTouch ? null : () => this.playD6Note('d6')}
           />
         </g>
       </>
@@ -78,4 +108,4 @@ class ANotes extends Component {
   }
 };
 
-export default ANotes;
+export default DNotes;

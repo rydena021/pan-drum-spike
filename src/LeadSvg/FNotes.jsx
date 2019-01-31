@@ -1,4 +1,18 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
+
+const F4sound = new Howl({
+  src: ['/LeadWavs/LeadF4.wav', '/LeadWavs/LeadF4.wav']
+});
+const FSh4sound = new Howl({
+  src: ["/LeadWavs/LeadFSh4.wav", "/LeadWavs/LeadFSh4.wav"]
+});
+const F5sound = new Howl({
+  src: ['/LeadWavs/LeadF5.wav', '/LeadWavs/LeadF5.wav']
+});
+const FSh5sound = new Howl({
+  src: ['/LeadWavs/LeadFSh5.wav', '/LeadWavs/LeadFSh5.wav']
+});
 
 class FNotes extends Component {
   state = {
@@ -38,14 +52,36 @@ class FNotes extends Component {
   componentWillUnmount() {
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
+  playF4Note = (note) => {
+    F4sound.play();
     console.log('in FNotes', note);
-
     this.setState({
       [note]: '#224900'
-    }) 
+    })
+  }
+  playFSh4Note = (note) => {
+    FSh4sound.play();
+    console.log('in FNotes', note);
+    this.setState({
+      [note]: '#224900'
+    })
+  }
+  playF5Note = (note) => {
+    F5sound.play();
+    console.log('in FNotes', note);
+    this.setState({
+      [note]: '#224900'
+    })
+  }
+  playFSh5Note = (note) => {
+    FSh5sound.play();
+    console.log('in FNotes', note);
+    this.setState({
+      [note]: '#224900'
+    })
   }
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* F NOTES */}
@@ -57,7 +93,8 @@ class FNotes extends Component {
             cy="173.184"
             rx="143.707"
             ry="110.209"
-            onClick={() => this.playNote('f4Sh')}
+            onTouchStart={isTouch ? () => this.playFSh4Note('f4Sh') : null}
+            onClick={isTouch ? null : () => this.playFSh4Note('f4Sh')}
           />
         </g>
         <g id="f4">
@@ -68,7 +105,8 @@ class FNotes extends Component {
             cy="1133.613"
             rx="144.589"
             ry="111.309"
-            onClick={() => this.playNote('f4')}
+            onTouchStart={isTouch ? () => this.playF4Note('f4') : null}
+            onClick={isTouch ? null : () => this.playF4Note('f4')}
           />
         </g>
         <g id="f5Sh">
@@ -79,7 +117,8 @@ class FNotes extends Component {
             cy="429.604"
             rx="61.378"
             ry="86.213"
-            onClick={() => this.playNote('f5Sh')}
+            onTouchStart={isTouch ? () => this.playFSh5Note('f5Sh') : null}
+            onClick={isTouch ? null : () => this.playFSh5Note('f5Sh')}
           />
         </g>
         <g id="f5">
@@ -90,7 +129,8 @@ class FNotes extends Component {
             cy="984.672"
             rx="89.688"
             ry="62.346"
-            onClick={() => this.playNote('f5')}
+            onTouchStart={isTouch ? () => this.playF5Note('f5') : null}
+            onClick={isTouch ? null : () => this.playF5Note('f5')}
           />
         </g>
       </>

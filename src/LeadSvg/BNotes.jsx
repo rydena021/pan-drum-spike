@@ -1,4 +1,22 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
+
+
+const B4sound = new Howl({
+  src: ['/LeadWavs/LeadB4.wav', '/LeadWavs/LeadB4.wav']
+});
+
+const Bb4sound = new Howl({
+  src: ['/LeadWavs/LeadBb4.wav', '/LeadWavs/LeadBb4.wav']
+});
+
+const B5sound = new Howl({
+  src: ['/LeadWavs/LeadB5.wav', '/LeadWavs/LeadB5.wav']
+});
+
+const Bb5sound = new Howl({
+  src: ['/LeadWavs/LeadBb5.wav', '/LeadWavs/LeadBb5.wav']
+});
 
 class BNotes extends Component {
   state = {
@@ -38,14 +56,41 @@ class BNotes extends Component {
   componentWillUnmount() {
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
-    console.log('in BNotes', note);
 
+  playB4Note = (note) => {
+    B4sound.play();
+    console.log('in BNotes', note);
     this.setState({
       [note]: '#FF577B'
     })
   }
+
+  playBb4Note = (note) => {
+    Bb4sound.play();
+    console.log('in BNotes', note);
+    this.setState({
+      [note]: '#FF577B'
+    })
+  }
+
+  playB5Note = (note) => {
+    B5sound.play();
+    console.log('in BNotes', note);
+    this.setState({
+      [note]: '#FF577B'
+    })
+  }
+
+  playBb5Note = (note) => {
+    Bb5sound.play();
+    console.log('in BNotes', note);
+    this.setState({
+      [note]: '#FF577B'
+    })
+  }
+
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* B NOTES */}
@@ -57,7 +102,8 @@ class BNotes extends Component {
             cy="280.58"
             rx="130.591"
             ry="101.538"
-            onClick={() => this.playNote('b4')}
+            onTouchStart={isTouch ? () => this.playB4Note('b4') : null}
+            onClick={isTouch ? null : () => this.playB4Note('b4')}
           />
         </g>
         <g id="b4F">
@@ -68,7 +114,8 @@ class BNotes extends Component {
             cy="911.805"
             rx="129.46"
             ry="101.873"
-            onClick={() => this.playNote('b4F')}
+            onTouchStart={isTouch ? () => this.playBb4Note('b4f') : null}
+            onClick={isTouch ? null : () => this.playBb4Note('b4f')}
           />
         </g>
         <g id="b5">
@@ -77,7 +124,8 @@ class BNotes extends Component {
             cx="836"
             cy="410"
             r="57.5"
-            onClick={() => this.playNote('b5')}
+            onTouchStart={isTouch ? () => this.playB5Note('b5') : null}
+            onClick={isTouch ? null : () => this.playB5Note('b5')}
           />
         </g>
         <g id="b5F">
@@ -86,7 +134,8 @@ class BNotes extends Component {
             cx="468"
             cy="931"
             r="61.5"
-            onClick={() => this.playNote('b5F')}
+            onTouchStart={isTouch ? () => this.playBb5Note('b5F') : null}
+            onClick={isTouch ? null : () => this.playBb5Note('b5F')}
           />
         </g>
       </>

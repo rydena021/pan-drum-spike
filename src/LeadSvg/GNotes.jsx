@@ -1,4 +1,18 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
+
+const G4sound = new Howl({
+  src: ['/LeadWavs/LeadG4.wav', '/LeadWavs/LeadG4.wav']
+});
+const GSh4sound = new Howl({
+  src: ["/LeadWavs/LeadGSh4.wav", "/LeadWavs/LeadGSh4.wav"]
+});
+const G5sound = new Howl({
+  src: ['/LeadWavs/LeadG5.wav', '/LeadWavs/LeadG5.wav']
+});
+const GSh5sound = new Howl({
+  src: ['/LeadWavs/LeadGSh5.wav', '/LeadWavs/LeadGSh5.wav']
+});
 
 class GNotes extends Component {
   state = {
@@ -38,14 +52,36 @@ class GNotes extends Component {
   componentWillUnmount() {
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
+  playG4Note = (note) => {
+    G4sound.play();
     console.log('in GNotes', note);
-
+    this.setState({
+      [note]: '#23A9C9'
+    })
+  }
+  playGSh4Note = (note) => {
+    GSh4sound.play();
+    console.log('in GNotes', note);
+    this.setState({
+      [note]: '#23A9C9'
+    })
+  }
+  playG5Note = (note) => {
+    G5sound.play();
+    console.log('in GNotes', note);
+    this.setState({
+      [note]: '#23A9C9'
+    })
+  }
+  playGSh5Note = (note) => {
+    GSh5sound.play();
+    console.log('in GNotes', note);
     this.setState({
       [note]: '#23A9C9'
     })
   }
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* G NOTES  */}
@@ -57,7 +93,8 @@ class GNotes extends Component {
             cy="1226.77"
             rx="105.142"
             ry="138.12"
-            onClick={() => this.playNote('g4')}
+            onTouchStart={isTouch ? () => this.playG4Note('g4') : null}
+            onClick={isTouch ? null : () => this.playG4Note('g4')}
           />
         </g>
         <g id="g4Sh">
@@ -68,7 +105,8 @@ class GNotes extends Component {
             cy="370.246"
             rx="106.013"
             ry="137.298"
-            onClick={() => this.playNote('g4Sh')}
+            onTouchStart={isTouch ? () => this.playGSh4Note('g4Sh') : null}
+            onClick={isTouch ? null : () => this.playGSh4Note('g4Sh')}
           />
         </g>
         <g id="g5">
@@ -79,7 +117,8 @@ class GNotes extends Component {
             cy="944.07"
             rx="57.816"
             ry="84.637"
-            onClick={() => this.playNote('g5')}
+            onTouchStart={isTouch ? () => this.playG5Note('g5') : null}
+            onClick={isTouch ? null : () => this.playG5Note('g5')}
           />
         </g>
         <g id="g5Sh">
@@ -90,9 +129,10 @@ class GNotes extends Component {
             cy="626.5"
             rx="55.845"
             ry="80.365"
-            onClick={() => this.playNote('g5Sh')}
+            onTouchStart={isTouch ? () => this.playGSh5Note('g5Sh') : null}
+            onClick={isTouch ? null : () => this.playGSh5Note('g5Sh')}
           />
-        </g> 
+        </g>
       </>
     );
   }

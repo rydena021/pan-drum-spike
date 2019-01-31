@@ -1,5 +1,26 @@
 import React, { Component } from 'react';
+import { Howl } from 'howler';
 // import Soundfont from 'soundfont-player';
+
+
+const C4sound = new Howl({
+  src: ['/LeadWavs/LeadC4.wav', '/LeadWavs/LeadC4.wav']
+});
+const CSh4sound = new Howl({
+  src: ["/LeadWavs/LeadCSh4.wav", "/LeadWavs/LeadCSh4.wav"]
+});
+const C5sound = new Howl({
+  src: ['/LeadWavs/LeadC5.wav', '/LeadWavs/LeadC5.wav']
+});
+const CSh5sound = new Howl({
+  src: ['/LeadWavs/LeadCSh5.wav', '/LeadWavs/LeadCSh5.wav']
+});
+const C6sound = new Howl({
+  src: ['/LeadWavs/LeadC6.wav', '/LeadWavs/LeadC6.wav']
+});
+const CSh6sound = new Howl({
+  src: ['/LeadWavs/LeadCSh6.wav', '/LeadWavs/LeadCSh6.wav']
+});
 
 class CNotes extends Component {
   state = {
@@ -12,7 +33,7 @@ class CNotes extends Component {
     stroke: 'black'
   }
   componentDidUpdate(prevProps, prevState) {
-    // when the state is updated, 
+    // when the state is updated,
     // a timeout is triggered to switch it back off
     if (this.state.c4Sh === '#930E00') {
       // Soundfont.instrument(new AudioContext(), 'steel_drums')
@@ -65,14 +86,50 @@ class CNotes extends Component {
     // clean it up when the component is unmounted.
     clearTimeout(this.turnOff);
   }
-  playNote = (note) => {
+  playC4Note = (note) => {
+    C4sound.play();
     console.log('in CNotes', note);
-
+    this.setState({
+      [note]: '#930E00'
+    })
+  }
+  playCSh4Note = (note) => {
+    CSh4sound.play();
+    console.log('in CNotes', note);
+    this.setState({
+      [note]: '#930E00'
+    })
+  }
+  playC5Note = (note) => {
+    C5sound.play();
+    console.log('in CNotes', note);
+    this.setState({
+      [note]: '#930E00'
+    })
+  }
+  playCSh5Note = (note) => {
+    CSh5sound.play();
+    console.log('in CNotes', note);
+    this.setState({
+      [note]: '#930E00'
+    })
+  }
+  playC6Note = (note) => {
+    C6sound.play();
+    console.log('in CNotes', note);
+    this.setState({
+      [note]: '#930E00'
+    })
+  }
+  playCSh6Note = (note) => {
+    CSh6sound.play();
+    console.log('in CNotes', note);
     this.setState({
       [note]: '#930E00'
     })
   }
   render() {
+    const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
     return (
       <>
         {/* C NOTES */}
@@ -84,7 +141,8 @@ class CNotes extends Component {
             cy="222.083"
             rx="123.312"
             ry="160.529"
-            onClick={() => this.playNote('c4Sh')}
+            onTouchStart={isTouch ? () => this.playCSh4Note('c4Sh') : null}
+            onClick={isTouch ? null : () => this.playCSh4Note('c4Sh')}
           />
         </g>
         <g id="c4">
@@ -95,7 +153,8 @@ class CNotes extends Component {
             cy="1253.042"
             rx="160.529"
             ry="123.312"
-            onClick={() => this.playNote('c4')}
+            onTouchStart={isTouch ? () => this.playC4Note('c4') : null}
+            onClick={isTouch ? null : () => this.playC4Note('c4')}
           />
         </g>
         <g id="c5Sh">
@@ -106,7 +165,8 @@ class CNotes extends Component {
             cy="497.909"
             rx="71.879"
             ry="103.233"
-            onClick={() => this.playNote('c5Sh')}
+            onTouchStart={isTouch ? () => this.playCSh5Note('c5Sh') : null}
+            onClick={isTouch ? null : () => this.playCSh5Note('c5Sh')}
           />
         </g>
         <g id="c5">
@@ -117,7 +177,8 @@ class CNotes extends Component {
             cy="1002.969"
             rx="74.869"
             ry="106.963"
-            onClick={() => this.playNote('c5')}
+            onTouchStart={isTouch ? () => this.playC5Note('c5') : null}
+            onClick={isTouch ? null : () => this.playC5Note('c5')}
           />
         </g>
         <g id="c6Sh">
@@ -127,7 +188,8 @@ class CNotes extends Component {
             cy="679.5"
             rx="55"
             ry="56"
-            onClick={() => this.playNote('c6Sh')}
+            onTouchStart={isTouch ? () => this.playCSh6Note('c6Sh') : null}
+            onClick={isTouch ? null : () => this.playCSh6Note('c6Sh')}
           />
         </g>
         <g id="c6">
@@ -137,7 +199,8 @@ class CNotes extends Component {
             cy="798.5"
             rx="55"
             ry="56"
-            onClick={() => this.playNote('c6')}
+            onTouchStart={isTouch ? () => this.playC6Note('c6') : null}
+            onClick={isTouch ? null : () => this.playC6Note('c6')}
           />
         </g>
       </>

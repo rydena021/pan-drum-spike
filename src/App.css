@@ -4,8 +4,8 @@
 }
 
 #lead-svg {
-  width: 67%;
-  height: 67%;
+  width: 50%;
+  height: 75vh;
 }
 
 .circle-three {
@@ -14,6 +14,7 @@
 
 .App {
   text-align: center;
+  touch-action: manipulation;
 }
 
 .App-logo {
