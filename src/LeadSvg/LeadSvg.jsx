@@ -7,7 +7,6 @@ import ANotes from './ANotes';
 import DNotes from './DNotes';
 import GNotes from './GNotes';
 
-// const viewBox = [window.innerWidth / -2, 100 - window.innerHeight, window.innerWidth, window.innerHeight];
 
 class LeadSvg extends Component {
   state = {

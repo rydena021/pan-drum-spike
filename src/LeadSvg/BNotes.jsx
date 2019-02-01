@@ -9,7 +9,7 @@ class BNotes extends Component {
     Bb5: '#FFBFCA',
     stroke: 'black'
   }
-  
+
   highlightNote = (note) => {
     this.setState({
       [note]: '#FF577B'
