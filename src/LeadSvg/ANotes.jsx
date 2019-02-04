@@ -7,7 +7,7 @@ class ANotes extends Component {
     A5: 'blue',
     stroke: 'black'
   }
-  
+
   highlightNote = (note) => {
     this.setState({
       [note]: '#00157C'
