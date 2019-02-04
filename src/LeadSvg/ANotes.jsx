@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import NOTES from './Notes';
 
-let displayColors = true;
+// let displayColors = true;
 
-let colors = {
-  color: 'blue',
-  highlight: '#00157C'
-}
+// let colors = {
+//   color: 'blue',
+//   highlight: '#00157C'
+// }
 
-let noColors = {
-  color: 'white',
-  highlight: 'black'
-}
+// let noColors = {
+//   color: 'white',
+//   highlight: 'black'
+// }
 
-if (!displayColors) {
-  colors = noColors
-}
+// if (!displayColors) {
+//   colors = noColors
+// }
 
 class ANotes extends Component {
   state = {
-    A4: colors.color,
-    A5: colors.color,
+    A4: 'blue',
+    A5: 'blue',
     stroke: 'black'
   }
 
   highlightNote = (note) => {
     this.setState({
-      [note]: colors.highlight
+      [note]: '#00157C'
     })
     setTimeout(() => {
       this.setState(() => ({
-        [note]: colors.color,
+        [note]: 'blue',
       }))
     }, 500);
   }

@@ -16,9 +16,9 @@ class LeadSvg extends Component {
   }
 
   testTouch = () => {
-    console.log('touched');
+    // console.log('touched');
   }
-  
+
   render() {
     return (
       <div className='disable-touch-zoom' onClick={this.testTouch}>
